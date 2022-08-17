@@ -26,15 +26,16 @@ export class UsersService {
         throw new HttpException('User already exist', HttpStatus.BAD_REQUEST);
       }
       const salt = await bcrypt.genSalt(11);
-      createUserInput.password = await bcrypt.hash(createUserInput.password, salt);
+      const password = await bcrypt.hash(createUserInput.password, salt);
       const user = this.usersRepository.create({
-        password: createUserInput.password,
+        password: password,
         phoneNumber: createUserInput.phoneNumber,
         name: createUserInput.name,
         role: createUserInput.role,
       });
       await manager.save(Users, user)
 
+      user.password = createUserInput.password
       return user;
     });
   }

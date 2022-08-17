@@ -33,8 +33,14 @@ export class AuthService {
    * @param user user data (id)
    * @returns generated access token
    */
-  async generateAccessToken(user: Pick<Users, "id">) {
-    const payload = { sub: String(user.id) };
+  async generateAccessToken(user: Pick<Users, "id" | "name" | "phoneNumber" | "role" | "createdAt" >) {
+    const payload = { 
+      sub: String(user.id),
+      name: user.name,
+      phone: user.phoneNumber,
+      role: user.role, 
+      createdAt: user.createdAt,
+    };
     return await this.jwtService.signAsync({
       ...payload,
       exp: Math.floor(Date.now()/1000) + Number(process.env.TOKEN_EXPIRED),
@@ -65,7 +71,9 @@ export class AuthService {
    * @returns generated refresh token
    */
   async generateRefreshToken(user: Pick<Users, "id">) {
-    const payload = { sub: String(user.id) };
+    const payload = { 
+      sub: String(user.id),
+    };
     const expiresIn = Number(process.env.REFRESH_TOKEN_EXPIRED)
     const token = await this.createRefreshToken(user, expiresIn*1000);
     return await this.jwtService.signAsync({
