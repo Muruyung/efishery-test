@@ -9,6 +9,21 @@ This project has  4 Domain layer :
  * Controller Layer  
  * Delivery Layer
 
+## First Run
+
+```bash
+$ go mod tidy
+```
+
+## Running the app
+```bash
+# Without docker
+$ go run .
+
+# Using docker
+$ docker-compose up -d
+```
+
 ## Tools Used:
  * [PostgreSQL](https://github.com/lib/pq)
  * [Iris Lib](https://github.com/kataras/iris)
