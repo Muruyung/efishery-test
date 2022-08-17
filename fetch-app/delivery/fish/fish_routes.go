@@ -6,6 +6,7 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
+// Init initialize fish routes
 func Init(app *iris.Application) {
 	fishAPI := console.Party(app, "/fish")
 	{

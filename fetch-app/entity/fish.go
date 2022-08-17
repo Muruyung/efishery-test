@@ -2,6 +2,7 @@ package entity
 
 import "time"
 
+// Fish entity of fish
 type Fish struct {
 	Uuid         *string    `xorm:"uuid" json:"uuid"`
 	Komoditas    *string    `xorm:"komoditas" json:"komoditas"`
@@ -14,6 +15,7 @@ type Fish struct {
 	Timestamp    *string    `xorm:"timestamp" json:"timestamp"`
 }
 
+// AggregateData entity of agregate data
 type AggregateData struct {
 	Min    int32   `xorm:"min" json:"min"`
 	Max    int32   `xorm:"max" json:"max"`
@@ -22,6 +24,7 @@ type AggregateData struct {
 	Data   []int   `json:"-"`
 }
 
+// Aggregate entity of aggregate
 type Aggregate struct {
 	Price AggregateData `xorm:"price" json:"price"`
 	Size  AggregateData `xorm:"size" json:"size"`

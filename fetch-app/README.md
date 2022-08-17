@@ -14,4 +14,3 @@ This project has  4 Domain layer :
  * [Iris Lib](https://github.com/kataras/iris)
  * [Xorm Lib](https://xorm.io/xorm)
  * [JWT](https://github.com/dgrijalva/jwt-go)
- * [bcrypt](https://golang.org/x/crypto/bcrypt)

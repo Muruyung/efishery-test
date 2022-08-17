@@ -24,6 +24,7 @@ func (resty RestyUseCase) GetFishList() (fish []entity.Fish, err error) {
 	return
 }
 
+// GetCurrency query for get currency data from currency API
 func (resty RestyUseCase) GetCurrency(code string) (currency map[string]interface{}, err error) {
 	resp, err := helper.RestyRequest(resty.Client, "https://cdn.jsdelivr.net").Get(fmt.Sprintf("/gh/fawazahmed0/currency-api@1/latest/currencies/idr/%s.json", code))
 	if err != nil {

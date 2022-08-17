@@ -8,6 +8,7 @@ import (
 	"fmt"
 )
 
+// Run is used for initialize application and running current application
 func Run() {
 	app := console.New()
 	fish.Init(app)

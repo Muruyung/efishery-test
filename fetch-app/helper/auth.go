@@ -16,32 +16,6 @@ type JwtWrapper struct {
 	ExpirationHours int64
 }
 
-// JwtClaim adds email as a claim to the token
-type JwtClaim struct {
-	Username string
-	jwt.StandardClaims
-}
-
-// GenerateToken generates a jwt token
-func (j *JwtWrapper) GenerateToken(username string) (signedToken string, err error) {
-	claims := &JwtClaim{
-		Username: username,
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Local().Add(time.Hour * time.Duration(j.ExpirationHours)).Unix(),
-			Issuer:    j.Issuer,
-		},
-	}
-
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-
-	signedToken, err = token.SignedString([]byte(j.SecretKey))
-	if err != nil {
-		return
-	}
-
-	return
-}
-
 // ValidateToken validates the jwt token
 func (j *JwtWrapper) ValidateToken(signedToken string) (claims jwt.MapClaims, err error) {
 	token, err := jwt.Parse(
@@ -69,6 +43,7 @@ func (j *JwtWrapper) ValidateToken(signedToken string) (claims jwt.MapClaims, er
 	return
 }
 
+// BearerTokenAuth validate the jwt token from bearer token
 func BearerTokenAuth(bearerToken string) (jwt.MapClaims, error) {
 	bearer := strings.Split(bearerToken, " ")
 	token := bearer[1]

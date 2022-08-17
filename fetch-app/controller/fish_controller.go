@@ -11,6 +11,7 @@ type FishController interface {
 	GroupFish() (groupFish map[string]interface{}, err error)
 }
 
+// GetFishList get list of fish from fish usecase
 func (controller Controller) GetFishList() (fish []entity.Fish, err error) {
 	fish, err = controller.usecase.GetFishList()
 	if err != nil {
@@ -32,6 +33,7 @@ func (controller Controller) GetFishList() (fish []entity.Fish, err error) {
 	return
 }
 
+// GroupFish get list of fish and aggregate data by province and weekly
 func (controller Controller) GroupFish() (groupFish map[string]interface{}, err error) {
 	fish, err := controller.usecase.GetFishList()
 	if err != nil {

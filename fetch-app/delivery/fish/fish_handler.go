@@ -8,7 +8,7 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-// ReadList controller using get method
+// ReadList is used for get list data of fish
 func ReadList(ctx iris.Context) {
 	payload, err := helper.BearerTokenAuth(ctx.GetHeader("Authorization"))
 	if err != nil {
@@ -34,6 +34,7 @@ func ReadList(ctx iris.Context) {
 	helper.CreateResponse(ctx).Ok().SetData(fish).JSON()
 }
 
+// Aggregate is used for get list data of list after grouping (aggregate)
 func Aggregate(ctx iris.Context) {
 	payload, err := helper.BearerTokenAuth(ctx.GetHeader("Authorization"))
 	if err != nil {
