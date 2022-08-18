@@ -13,7 +13,7 @@ services:
     # Run a command against the development stage of the image
     command: npm run start:dev
     ports:
-      - 3600:3600
+      - ${PORT}:${PORT}
     networks:
       - external_conn
 
